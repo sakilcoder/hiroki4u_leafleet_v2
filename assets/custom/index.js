@@ -17,15 +17,26 @@ let strMaxPrice = '';
 
 // updateValueToStatesGeojson();
 
-var map = L.map('map').setView([-50.78, -9.99], 4);
+var map = L.map('map', {
+    layers: [basemapCarto]
+}).setView([-50.78, -9.99], 4);
 map.options.minZoom = 4;
 map.options.maxZoom = 14;
 
 
-var tiles = L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png', {
-    attribution: '',
-    maxZoom: 20,
-}).addTo(map);
+// var tiles = L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png', {
+//     attribution: '',
+//     maxZoom: 20,
+// }).addTo(map);
+
+var baseLayers = {
+    'Carto': basemapCarto,
+    'Google': googleTerrain,
+    'OSM': OpenStreetMap_Mapnik,
+    'Satellite': Esri_WorldImagery,
+};
+
+var layerControl = L.control.layers(baseLayers).addTo(map);
 
 updateValueToStatesGeojson();
 
