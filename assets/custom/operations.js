@@ -84,9 +84,7 @@ let GetLegendValues = function(data){
 
 let updateValueToStatesGeojson = function () {
     map.spin(true);
-    $.get(statesUrl, function(data, status){
-        states = JSON.parse(data);
-        GetLegendValues(states);    
+    if(stateLayer && states.features.length>0){
         removeLayers();
         stateLayer = L.geoJson(states, {
             style: styleState,
@@ -96,8 +94,23 @@ let updateValueToStatesGeojson = function () {
         setTimeout(function () {
             map.spin(false);
         }, 1000);
+    }else{
+        $.get(statesUrl, function(data, status){
+            states = JSON.parse(data);
+            GetLegendValues(states);    
+            removeLayers();
+            stateLayer = L.geoJson(states, {
+                style: styleState,
+                onEachFeature: onEachFeatureState
+            }).addTo(map);
+            map.fitBounds(stateLayer.getBounds());
+            setTimeout(function () {
+                map.spin(false);
+            }, 1000);
+        
+        });
+    }
     
-    });
     
 }
 

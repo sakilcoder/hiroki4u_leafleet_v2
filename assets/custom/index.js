@@ -79,48 +79,28 @@ L.easyButton('fa-home fa-lg', function () {
 
 }).addTo(map);
 
-// var i = 0;
-// stateLayer.eachLayer(function(layer) {
-//     var context = {
-//         feature: layer.feature,
-//         variables: {}
-//     };
-//     layer.bindTooltip((layer.feature.properties['StateName'] !== null?String('<div style="color: #000000; font-size: 10pt; font-family: \'MS Shell Dlg 2\', sans-serif;">' + layer.feature.properties['StateName']) + '</div>':''), {permanent: true, offset: [-0, -16], className: 'no_class_added'});
-//     labels.push(layer);
-//     totalMarkers += 1;
-//         layer.added = true;
-//         addLabel(layer, i);
-//         i++;
-// });
-// resetLabels([stateLayer]);
-// map.on("layeradd", function(){
-//     resetLabels([stateLayer]);
-// });
-// map.on("layerremove", function(){
-//     resetLabels([stateLayer]);
-// });
 
-// map.on("zoomend", function (e) {
-//     resetLabels([stateLayer]);
-//     let zoomLevel = map.getZoom();
+map.on("zoomend", function (e) {
+    resetLabels([stateLayer]);
+    let zoomLevel = map.getZoom();
 
-//     if (zoomLevel == 4) {
-//         if(stateLayer)
-//             map.removeLayer(stateLayer);
-//         if(regionsLayer)
-//             map.removeLayer(regionsLayer);
-//         if(citiesLayer)
-//             map.removeLayer(citiesLayer);
-//         if(spLayer)
-//             map.removeLayer(spLayer);
-//         if(dis_stateLayer)   
-//             map.removeLayer(dis_stateLayer);
-//         if(dis_regionsLayer)
-//             map.removeLayer(dis_regionsLayer);
-//         if(dis_cityLayer)
-//             map.removeLayer(dis_cityLayer);
-//         updateValueToStatesGeojson();
-//         // map.addLayer(stateLayer);
+    if (zoomLevel == 4) {
+        if(stateLayer)
+            map.removeLayer(stateLayer);
+        if(regionsLayer)
+            map.removeLayer(regionsLayer);
+        if(citiesLayer)
+            map.removeLayer(citiesLayer);
+        if(spLayer)
+            map.removeLayer(spLayer);
+        if(dis_stateLayer)   
+            map.removeLayer(dis_stateLayer);
+        if(dis_regionsLayer)
+            map.removeLayer(dis_regionsLayer);
+        if(dis_cityLayer)
+            map.removeLayer(dis_cityLayer);
+        updateValueToStatesGeojson();
+        // map.addLayer(stateLayer);
 
-//     }
-// });
+    }
+});
