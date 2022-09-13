@@ -171,11 +171,12 @@ let updateValueToCity = function(uf, regionId){
 
 let updateValueToSao = function(uf, mesoregion_id, city_id){
     map.spin(true);
-    
     let url = neighbourhoodByCityUrl + uf + '/' + mesoregion_id + '/' + city_id;
     $.get(url, function(data, status){
         neighbourhood = JSON.parse(data);
-        if(neighbourhood.features.length>0){
+        console.log(neighbourhood);
+        if(neighbourhood.features != null){
+            
             // map.removeLayer(citiesLayer); 
             GetLegendValues(neighbourhood);
 
@@ -191,11 +192,13 @@ let updateValueToSao = function(uf, mesoregion_id, city_id){
                 onEachFeature: onEachFeatureSao
             }).addTo(map);
             map.fitBounds(spLayer.getBounds());
+
+            
         }
-        
         setTimeout(function () {
             map.spin(false);
-        }, 1000);
+        }, 100);
+        
     });
 }
 
