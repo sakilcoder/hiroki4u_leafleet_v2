@@ -87,6 +87,31 @@ let GetLegendValues = function(data){
 
 let updateValueToStatesGeojson = function () {
     map.spin(true);
+
+    // var parameters = L.Util.extend(defaultParameters);
+    // var URL = owsrootUrl + L.Util.getParamString(parameters);
+    // console.log(URL);
+    // $.ajax({
+    //     url : URL,
+    //     dataType : 'jsonp',
+    //     jsonpCallback : 'getJson',
+    //     success : function (states) {
+    //         console.log(states);
+    //         stateLayer = L.geoJson(states, {
+    //             style: styleState,
+    //             onEachFeature: onEachFeatureState
+    //         }).addTo(map);
+    //         map.fitBounds(stateLayer.getBounds());
+    //         setTimeout(function () {
+    //             map.spin(false);
+    //         }, 1000);
+    //     },
+    //     error: function (xhr, ajaxOptions, thrownError) {
+    //         console.log(xhr.status);
+    //         console.log(thrownError);
+    //     }
+    // });
+
     if(stateLayer && states.features.length>0){
         GetLegendValues(states);    
         removeLayers();
