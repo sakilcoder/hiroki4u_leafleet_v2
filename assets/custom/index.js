@@ -38,15 +38,12 @@ var baseLayers = {
 
 var layerControl = L.control.layers(baseLayers).addTo(map);
 
+
 updateValueToStatesGeojson();
 
 var legend = L.control({ position: 'bottomright' });
 
 legend.onAdd = function (map) {
-
-    // var div = L.DomUtil.create('div', 'info legend');
-    // div.innerHTML = str;
-    // return div;
 
     this._div = L.DomUtil.create('div', 'info legend');
     this.update();
@@ -85,14 +82,13 @@ L.easyButton('fa-home fa-lg', function () {
         map.removeLayer(dis_cityLayer);
 
     updateValueToStatesGeojson();
-    // map.addLayer(stateLayer);
-    // map.fitBounds(stateLayer.getBounds());
+    legend.update();
 
 }).addTo(map);
 
 
 map.on("zoomend", function (e) {
-    resetLabels([stateLayer]);
+    // resetLabels([stateLayer]);
     let zoomLevel = map.getZoom();
 
     if (zoomLevel == 4) {

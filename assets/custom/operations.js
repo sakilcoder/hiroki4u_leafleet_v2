@@ -57,6 +57,9 @@ let removeLayers = function(){
 }
 
 let GetLegendValues = function(data){
+    if(data == null){
+        return;
+    }
     data=data.features;
     let prices = [];
     minMax = [];
@@ -67,7 +70,7 @@ let GetLegendValues = function(data){
     minMax.push(Math.min.apply(Math, prices));
     minMax.push(Math.max.apply(Math, prices));
 
-    let everyIncrement =Math.ceil((minMax[1] - minMax[0])/10);
+    let everyIncrement = Math.ceil((minMax[1] - minMax[0])/10);
 
     let currentValue = minMax[0];
     legendValues.push(currentValue);
@@ -85,6 +88,7 @@ let GetLegendValues = function(data){
 let updateValueToStatesGeojson = function () {
     map.spin(true);
     if(stateLayer && states.features.length>0){
+        GetLegendValues(states);    
         removeLayers();
         stateLayer = L.geoJson(states, {
             style: styleState,
@@ -120,6 +124,13 @@ let updateValueToMesoregion = function(uf){
     let url = mesoregionsUrl+uf;
     $.get(url, function(data, status){
         filteredreg = JSON.parse(data);
+        if(filteredreg.features== null){
+            stateLayer.addTo(map);
+            setTimeout(function () {
+                map.spin(false);
+            }, 1000);
+            return;
+        }
         // console.log(filteredreg);
         GetLegendValues(filteredreg);
 

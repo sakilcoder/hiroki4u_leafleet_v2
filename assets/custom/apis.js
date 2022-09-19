@@ -18,3 +18,5 @@ let neighbourhoodProps = 'https://api.imovelmetro.com.br/br/'; // {uf}/{mesoregi
 // https://api.imovelmetro.com.br/br/sp/3515/5345
 // https://api.imovelmetro.com.br/br/sp/3515/5345/e6e13147-7286-4e9e-9d56-33279298a667
 
+// ?service=WFS&version=1.0.0&request=GetFeature&typeName=cite%3Aimo_state&maxFeatures=50&outputFormat=application%2Fjson
+

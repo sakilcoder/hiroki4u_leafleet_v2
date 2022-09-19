@@ -75,8 +75,10 @@ function zoomToFeature(e) {
 function stateClicked(e) {
 
     let uf = e.sourceTarget.feature.properties.uf;
-    // console.log(e.sourceTarget.feature.properties.uf);
+    // console.log(uf);
     updateValueToMesoregion(uf);
+    // console.log(retValue);
+    
     map.removeLayer(stateLayer);
     if(dis_stateLayer)
         map.removeLayer(dis_stateLayer);
@@ -116,15 +118,6 @@ function onEachFeatureState(feature, layer) {
     let strContent = '<p style="text-align: center;"><b>' + feature.properties.name + '<br>Price: ' + feature.properties.price_m2 + '</b></p>';
     popup.setContent(strContent);
     layer.bindPopup(popup, popupOptions);
-    // layer.bindLabel(feature.properties.StateName, { direction: 'auto' })
-    // layer.bindTooltip(feature.properties.StateName, {permanent: true, direction: 'center'})
-
-    // var label = new L.Label();
-    // label.setContent(feature.properties.StateName);
-    // label.setLatLng(layer.getBounds().getCenter());
-    // layer.showLabel(label);
-
-    // console.log(layer.getBounds().getCenter());
 
     layer.on('mouseover', function (e) {
         var popup = e.target.getPopup();
